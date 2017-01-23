@@ -18,36 +18,109 @@
 public class Usuario {
 	
 	// Atributos	
-	public String nif;
-	public String nombre;
-	public String apellidos;
-	public String domicilio;
-	public String correo;
-	public String fechaNacimiento;
-	public String fechaAlta;
-	public String claveAcceso;
-	public String rol;
+	private String nif;
+	private String nombre;
+	private String apellidos;
+	private String domicilio;
+	private String correo;
+	private String fechaNacimiento;
+	private String fechaAlta;
+	private String claveAcceso;
+	private String rol;
 
 	
 	
-	
+
+	public String getNif() {
+		return nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getClaveAcceso() {
+		return claveAcceso;
+	}
+
+	public void setClaveAcceso(String claveAcceso) {
+		this.claveAcceso = claveAcceso;
+	}
+
+	public String getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(String fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	/**
 	 * Redefine el método heredado de la clase Objecto.
-	 * @return el texto formateado del estado (valores de atributos) 
-	 * de objeto de la clase Usuario  
+	 * @return el texto formateado del estado -valores de atributos- de objeto de la clase Usuario.  
 	 */
 	@Override
 	public String toString() {
 		return super.toString() + "\n" 			// Incluye identificador de objeto.
-				+"\n nif: \t\t" + nif 
-				+ "\n nombre: \t" + nombre 
-				+ "\n apellidos: \t" + apellidos 
-				+ "\n domicilio: \t" + domicilio 
-				+ "\n correo: \t" + correo 
-				+ "\n fechaNacimiento:" + fechaNacimiento
-				+ "\n fechaAlta: \t" + fechaAlta 
-				+ "\n claveAcceso: \t" + claveAcceso
-				+ "\n rol: \t\t" + rol ;
+				+"\n nif: \t\t" + getNif() 
+				+ "\n nombre: \t" + getNombre() 
+				+ "\n apellidos: \t" + getApellidos() 
+				+ "\n domicilio: \t" + getDomicilio() 
+				+ "\n correo: \t" + getCorreo() 
+				+ "\n fechaNacimiento:" + getFechaNacimiento()
+				+ "\n fechaAlta: \t" + getFechaAlta() 
+				+ "\n claveAcceso: \t" + getClaveAcceso()
+				+ "\n rol: \t\t" + getRol() ;
 	}
 
+
 } // class
+
