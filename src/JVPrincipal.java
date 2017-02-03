@@ -231,32 +231,15 @@ public class JVPrincipal {
 	 * del almacén de datos.
 	 */
 	private static void cargarDatosPrueba() {
-		Usuario usuarioAux = new Usuario();
-		usuarioAux.setNif("2344556K");
-		usuarioAux.setNombre("Pepe"); 
-		usuarioAux.setApellidos("López Pérez");
-		usuarioAux.setDomicilio("C/Luna, 27 30132 Murcia");
-		usuarioAux.setCorreo("pepe@gmail.com");
-		usuarioAux.setFechaNacimiento("1990.11.12");
-		usuarioAux.setFechaAlta("2014.12.3");
-		usuarioAux.setClaveAcceso("Miau#0");
-		usuarioAux.setRol("usuario normal");
-		datosUsuarios[0] = usuarioAux;
-
-		for (int i = 1; i < MAX_USUARIOS; i++) {
-			usuarioAux = new Usuario();
-			usuarioAux.setNif(i + "344556K");
-			usuarioAux.setNombre("Pepe" + i); 
-			usuarioAux.setApellidos("López" + " Pérez" +i) ;
-			usuarioAux.setDomicilio("C/Luna, 27 30132 Murcia");
-			usuarioAux.setCorreo("pepe" + i + "@gmail.com");
-			usuarioAux.setFechaNacimiento("1990.11.12");
-			usuarioAux.setFechaAlta("2014.12.3");
-			usuarioAux.setClaveAcceso("Miau#" + i);
-			usuarioAux.setRol("usuario normal");
-			datosUsuarios[i] = usuarioAux;
+		for (int i = 0; i < MAX_USUARIOS; i++){
+			Usuario usuarioAux = new Usuario(i+"23456790K" , "Pepe" , "López Pérez"+i , "C/Luna, 27 30132 Murcia" , "pepe"+i+"@gmail.com" , "1990.11.12" , "2016.12.3"
+					+ "Miau#0" , "usuario normal");
+			int variantes =1;
+			while(buscarUsuario(usuarioAux.getIdUsr()) != null && variantes < "ABCDEFGHIJKLMNOPQRSTUVWXYZ".length()){
+			}
 		}
 	}
+	
 
 	/**
 	 * Apartado 5: 
