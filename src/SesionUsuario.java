@@ -8,17 +8,26 @@
  *  Se pueden detectar varios defectos y antipatrones de diseño:
  *  	- Ausencia de encapsulación.
  *  	- Clase sólo de datos.
- *  @since: prototipo1.0
+ *  @since: prototipo1.1
  *  @source: SesionUsuario.java 
- *  @version: 1.0 - 2016/12/8 
+ *  @version: 1.1 - 2017/18/1 
  *  @author: ajp
  */
+
+
 
 public class SesionUsuario {
 	
 	// Atributos	
 	private Usuario usr;   //materializa la relación de composición del modelo UML
 	private String fecha; 
+	
+	public SesionUsuario(Usuario usu,String fech){
+		
+		this.usr=usu;
+		this.fecha=fech;
+	}
+	
 	
 	/**
 	 * Redefine el método heredado de la clase Objecto.
@@ -31,22 +40,21 @@ public class SesionUsuario {
 				+ "\n" + getUsr()
 				+ "\n fecha:" + getFecha();
 	}
-
+	//Apartado3
 	public Usuario getUsr() {
 		return usr;
 	}
 
-	public void setUsr(Usuario usr) {
-		this.usr = usr;
+	public void setUsr(Usuario user) {
+		usr = user;
 	}
 
 	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFecha(String date) {
+		fecha = date;
 	}
 
 } // class
-

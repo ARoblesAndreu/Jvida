@@ -9,12 +9,15 @@
  *  	- Clase demasiado grande. 
  * @since: prototipo1.0
  * @source: JVPrincipal.java 
- * @version: 1.0 - 2016/12/8 
+ * @version: 1.1 - 2017/18/1 
  * @author: ajp
  */
 
+
+
 import java.util.Date;
 import java.util.Scanner;
+
 
 public class JVPrincipal {
 
@@ -86,7 +89,10 @@ public class JVPrincipal {
 			
 			// Busca usuario coincidente con las credenciales.
 			System.out.println(idUsr);
-			usrSesion = buscarUsuario(idUsr);
+			for (SesionUsuario sesionUsuario : datosSesiones) {
+				
+			
+			usrSesion = sesionUsuario.getUsr();
 			if ( usrSesion != null) {	
 				if (usrSesion.getClaveAcceso().equals(clave)) {
 					todoCorrecto = true;
@@ -97,14 +103,13 @@ public class JVPrincipal {
 				System.out.println("Credenciales incorrectas...");
 				System.out.println("Quedan " + intentos + " intentos... ");
 			}
+			}
 		}
 		while (!todoCorrecto && intentos > 0);
 
 		if (todoCorrecto) {
 			// Registra sesion de usuario.
-			SesionUsuario sesion = new SesionUsuario();
-			sesion.setUsr(usrSesion);
-			sesion.setFecha(new Date().toString());
+			SesionUsuario sesion = new SesionUsuario(usrSesion,new Date().toString());
 			datosSesiones[sesionesRegistradas] = sesion;  	// Añade sesión a partir de la última posición ocupada.
 			sesionesRegistradas++; 							// Actualiza contador sesiones.
 			
@@ -121,14 +126,20 @@ public class JVPrincipal {
 	 * @param idUsr - el nif del Usuario a buscar.
 	 * @return - el Usuario encontrado o null si no existe.
 	 */
-	public static Usuario buscarUsuario(String idUsr) {
+	public static boolean buscarUsuario(String idd) {
 		// Busca usuario coincidente con la credencial.
-		for (int i = 0; i < MAX_USUARIOS; i++) {
-			if (datosUsuarios[i].getNif().equals(idUsr)) {
-				return datosUsuarios[i];	// Devuelve el usuario encontrado.
+		
+				
+			for (Usuario usu : datosUsuarios) {
+				if(usu!=null)
+					if(usu.getIdUsr().equals(idd)){
+						return true;
+					}
 			}
-		}
-		return null;						// No encuentra.
+				
+			
+					// No encuentra.
+		return false;
 	}
 	
 	/**
@@ -222,6 +233,7 @@ public class JVPrincipal {
 	private static void mostrarTodosDatosUsuarios() {
 		for (Usuario u: datosUsuarios) {
 			System.out.println("\n" + u);
+		
 		}
 	}
 
@@ -231,15 +243,21 @@ public class JVPrincipal {
 	 * del almacén de datos.
 	 */
 	private static void cargarDatosPrueba() {
-		for (int i = 0; i < MAX_USUARIOS; i++){
-			Usuario usuarioAux = new Usuario(i+"23456790K" , "Pepe" , "López Pérez"+i , "C/Luna, 27 30132 Murcia" , "pepe"+i+"@gmail.com" , "1990.11.12" , "2016.12.3"
-					+ "Miau#0" , "usuario normal");
-			int variantes =1;
-			while(buscarUsuario(usuarioAux.getIdUsr()) != null && variantes < "ABCDEFGHIJKLMNOPQRSTUVWXYZ".length()){
-			}
-		}
-	}
+		Usuario usuarioAux = new Usuario();
 	
+		datosUsuarios[0] = usuarioAux;
+
+		for (int i = 1; i < MAX_USUARIOS; i++) {
+			usuarioAux=new Usuario();
+			while(buscarUsuario(usuarioAux.getIdUsr())){
+				
+				usuarioAux.generarVarianteIdUsr(usuarioAux.getIdUsr());
+			}
+			datosUsuarios[i]=usuarioAux;
+			
+	    }
+
+	}
 
 	/**
 	 * Apartado 5: 
@@ -260,9 +278,8 @@ public class JVPrincipal {
 		usr.setRol("usuario normal");
 		
 		// Prueba de la clase SesionUsuario
-		SesionUsuario sesion1 = new SesionUsuario();
-		sesion1.setUsr(usr);
-		sesion1.setFecha("2016.12.3");
+		SesionUsuario sesion1 = new SesionUsuario(usr,"2016.12.3");
+	
 		System.out.println(sesion1);	
 	}
 	
@@ -342,6 +359,7 @@ public class JVPrincipal {
 		System.out.println(usr2);
 		System.out.println(usr3);
 		System.out.println(usr4);
+		
 	}
 
 } //class
