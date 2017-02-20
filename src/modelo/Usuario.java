@@ -67,7 +67,7 @@ public class Usuario {
 		if (nombre != null && apellidos != null && nif != null) {
 			String idUsr = "" + nombre.charAt(0) + apellidos.charAt(0)
 					+ apellidos.charAt(apellidos.indexOf(" ") + 1)
-					+ Nif.getTexto().substring(7);
+					+ nif.getTexto().substring(7);
 			this.idUsr = idUsr;
 		}
 	}
@@ -108,8 +108,8 @@ public class Usuario {
 	 * @param usr
 	 */
 	public Usuario(Usuario usr) {
-		this(usr.getNif(), usr.nombre, usr.apellidos, usr.domicilio, usr.correo,
-				usr.fechaNacimiento, usr.fechaAlta, usr.getClaveAcceso(),
+		this(new Nif(usr.nif), usr.nombre, usr.apellidos, usr.domicilio, new Correo(usr.correo),
+				usr.fechaNacimiento, usr.fechaAlta, new ClaveAcceso(usr.claveAcceso),
 				usr.rol);
 	}
 
