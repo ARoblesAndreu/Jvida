@@ -19,12 +19,12 @@ public class Usuario {
 	public static final String[] ROLES = { "NORMAL", "INVITADO",
 			"ADMINISTRADOR" };
 	// Apartado 2:
-	private String nif;
+	private Nif nif;
 	private String nombre;
 	private String apellidos;
 	private String idUsr;
 	private String domicilio;
-	private String correo;
+	private Correo correo;
 	private String fechaNacimiento;
 	private String fechaAlta;
 	private ClaveAcceso claveAcceso;
@@ -43,8 +43,8 @@ public class Usuario {
 	 * @param claveAcceso2
 	 * @param rol
 	 */
-	public Usuario(String nif, String nombre, String apellidos,
-			String domicilio, String correo, String fechaNacimiento,
+	public Usuario(Nif nif, String nombre, String apellidos,
+			String domicilio, Correo correo, String fechaNacimiento,
 			String fechaAlta, ClaveAcceso claveAcceso, String rol) {
 		setNif(nif);
 		setNombre(nombre);
@@ -67,7 +67,7 @@ public class Usuario {
 		if (nombre != null && apellidos != null && nif != null) {
 			String idUsr = "" + nombre.charAt(0) + apellidos.charAt(0)
 					+ apellidos.charAt(apellidos.indexOf(" ") + 1)
-					+ nif.substring(7);
+					+ Nif.getTexto().substring(7);
 			this.idUsr = idUsr;
 		}
 	}
@@ -97,8 +97,8 @@ public class Usuario {
 	 * Constructor por defecto. Utiliza constructor convencional.
 	 */
 	public Usuario() {
-		this("12345678Z", "Nombre", "Apellidos1 Apellido2", "Domicilio",
-				"correo@correo.es", "2016.01.27", "2016.01.27",
+		this(new Nif(), "Nombre", "Apellidos1 Apellido2", "Domicilio",
+				new Correo(), "2016.01.27", "2016.01.27",
 				new ClaveAcceso("Miau#0"), ROLES[0]);
 	}
 
@@ -108,7 +108,7 @@ public class Usuario {
 	 * @param usr
 	 */
 	public Usuario(Usuario usr) {
-		this(usr.nif, usr.nombre, usr.apellidos, usr.domicilio, usr.correo,
+		this(usr.getNif(), usr.nombre, usr.apellidos, usr.domicilio, usr.correo,
 				usr.fechaNacimiento, usr.fechaAlta, usr.getClaveAcceso(),
 				usr.rol);
 	}
@@ -150,11 +150,11 @@ public class Usuario {
 		this.apellidos = apellidos;
 	}
 
-	public String getNif() {
+	public Nif getNif() {
 		return nif;
 	}
 
-	public void setNif(String nif) {
+	public void setNif(Nif nif) {
 		this.nif = nif;
 	}
 
@@ -178,23 +178,12 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getCorreo() {
+	public Correo getCorreo() {
 		return correo;
 	}
 
-	public void setCorreo(String correo) {
-		if (CorreoValido(correo)) {
+	public void setCorreo(Correo correo) {
 			this.correo = correo;
-		}
-	}
-
-	// Apartado 6:
-	private boolean CorreoValido(String correo) {
-		if (correo != null) {
-			return correo.matches("^[\\w-\\+]+(\\.[\\w-\\+]+)*@"
-					+ "[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-		}
-		return false;
 	}
 
 	// Apartado 2:

@@ -17,7 +17,9 @@ import java.util.Scanner;
 
 import modelo.ClaveAcceso;
 import modelo.SesionUsuario;
+import modelo.Nif;
 import modelo.Usuario;
+import modelo.Correo;
 
 public class JVPrincipal {
 
@@ -232,10 +234,10 @@ public class JVPrincipal {
 	 */
 	private static void cargarDatosPrueba() {
 		for (int i = 0; i < MAX_USUARIOS; i++) {
-			Usuario usuarioAux = new Usuario(i + "2344556K", "Pepe",
-					"López Pérez", "C/Luna, 27 30132 Murcia", "pepe"
-							+ "@gmail.com", "1990.11.12", "2014.12.3",
-					new ClaveAcceso("Miau#" + i), Usuario.ROLES[0]);
+			Usuario usuarioAux = new Usuario(new Nif(), "Pepe",
+					"López Pérez", "C/Luna, 27 30132 Murcia", new Correo(),
+					"1990.11.12", "2014.12.3",new ClaveAcceso("Miau#" + i),
+					Usuario.ROLES[0]);
 			int variantes = 1;
 			while (buscarUsuario(usuarioAux.getIdUsr()) != null
 					&& variantes < "ABCDEFGHJKLMNPQRSTUVWXYZ".length()) {
